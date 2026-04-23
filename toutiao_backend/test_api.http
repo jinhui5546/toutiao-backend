@@ -1,0 +1,86 @@
+### 测试 API 接口
+
+### 变量定义
+@baseUrl = http://127.0.0.1:8000
+@token = 
+
+### 1. 用户注册
+POST {{baseUrl}}/api/user/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "123456"
+}
+
+### 2. 用户登录
+POST {{baseUrl}}/api/user/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "123456"
+}
+
+### 3. 获取新闻分类
+GET {{baseUrl}}/api/news/categories?skip=0&limit=10
+
+### 4. 获取新闻列表
+GET {{baseUrl}}/api/news/list?categoryId=1&page=1&pageSize=10
+
+### 5. 获取新闻详情
+GET {{baseUrl}}/api/news/detail?id=1
+
+### 6. 获取用户信息（需要认证）
+GET {{baseUrl}}/api/user/info
+Authorization: Bearer {{token}}
+
+### 7. 检查收藏状态（需要认证）
+GET {{baseUrl}}/api/favorite/check?newsId=1
+Authorization: Bearer {{token}}
+
+### 8. 添加收藏（需要认证）
+POST {{baseUrl}}/api/favorite/add
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "newsId": 1
+}
+
+### 9. 获取收藏列表（需要认证）
+GET {{baseUrl}}/api/favorite/list?page=1&pageSize=10
+Authorization: Bearer {{token}}
+
+### 10. 添加浏览历史（需要认证）
+POST {{baseUrl}}/api/history/add
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "newsId": 1
+}
+
+### 11. 获取浏览历史（需要认证）
+GET {{baseUrl}}/api/history/list?page=1&pageSize=10
+Authorization: Bearer {{token}}
+
+### 12. 更新用户信息（需要认证）
+PUT {{baseUrl}}/api/user/update
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nickname": "测试用户",
+  "bio": "这是我的个人简介"
+}
+
+### 13. 修改密码（需要认证）
+PUT {{baseUrl}}/api/user/password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "oldPassword": "123456",
+  "newPassword": "654321"
+}
